@@ -1,0 +1,32 @@
+name: MLOps-Sentinel-Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  train-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Mock Training
+      run: python scripts/train.py
+
+    - name: Run Gatekeeper Validation
+    # This step will stop the whole pipeline if the model is slow or inaccurate
+      run: python scripts/validate.py

@@ -1,0 +1,15 @@
+# Core ML
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+
+# ONNX Runtime & Conversion
+onnxruntime
+skl2onnx
+onnxmltools
+
+# MLOps & Tracking
+mlflow
+evidently
